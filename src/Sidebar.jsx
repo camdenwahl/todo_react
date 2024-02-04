@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 
-function Sidebar({handleAddProjectProp, projectComponents, showResults, handleShow, handleText, inputValue, handleDelete, handleActiveToggle, handleEnter}) {
+function Sidebar({handleAddProjectProp, projectComponents, showResults, handleShow, handleText, inputValue, handleDelete, handleActiveToggle, handleEnter, sidebarVisibility, sidebarWidth}) {
 
 
     return(
-        <div id = "side-bar">
+        <div id = "side-bar" style={{
+            width: sidebarVisibility ? (sidebarWidth ? "20%" : "100vw") : "0",
+            display: sidebarVisibility ? "flex" : "none",
+          }}>
             <button onClick={handleShow} id = "projectButton">Add Project</button>
             {showResults ? <div id = "input-button-div"><input type="text"  value = {inputValue} onChange = {handleText}  onKeyDown={handleEnter}/> <button onClick = {handleAddProjectProp}>Submit</button></div> : null}
             {projectComponents.map(project => (

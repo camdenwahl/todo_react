@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import Contentbar from './Contentbar'
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect } from 'react'
 
 
 
@@ -16,6 +17,8 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [showEntry, setShowEntry] = useState(false);
   const [toDoList, setToDoList] = useState([]);
+  const [sidebarVisibility, setSidebarVisibility] = useState(true);
+  const [sidebarWidth, setSidebarWidth] = useState(true);
 
   function handleShow() {
     setShowResults(!showResults);
@@ -69,8 +72,8 @@ function App() {
         return project;
       }
     })
-    console.log(newArrayState);
     setProjectList(newArrayState);
+    handleDisplay();
   }
 
   function handleShowEntry(uniqueKey) {
@@ -79,7 +82,13 @@ function App() {
         return {...project, showEntry: !project.showEntry };
       } else if (project.uniqueKey !== uniqueKey) {
         return {...project, showEntry: false};
-      }
+      }useEffect(() => {
+        window.addEventListener('resize', handleDisplay);
+      
+        return () => {
+          window.removeEventListener('resize', handleDisplay);
+        };
+      }, []);
     })
     setProjectList(newArrayState);
   }
@@ -100,12 +109,31 @@ function App() {
       handleAddProject();
     }
   }
+  function handleDisplay(){
+    if (window.innerWidth > 700) {
+      setSidebarWidth(!sidebarWidth)
+    }
+    setSidebarVisibility(!sidebarVisibility);
+    console.log(sidebarWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleDisplay);
+  
+    return () => {
+      window.removeEventListener('resize', handleDisplay);
+    };
+  }, []);
 
   return(
     <>
-    <Navbar/>
+    <Navbar
+    handleDisplay = {handleDisplay}
+    />
     <div id = "flex-content">
-    <Sidebar 
+    <Sidebar
+    sidebarWidth = {sidebarWidth} 
+    sidebarVisibility = {sidebarVisibility}
     handleAddProjectProp = {handleAddProject}
     handleText = {handleInput} 
     projectComponents = {projectList} 
@@ -118,6 +146,7 @@ function App() {
     
     />
     <Contentbar 
+    sidebarVisibility = {sidebarVisibility}
     projectComponents= {projectList}
     handleAddTask={handleAddTask}
     handleShowEntry={handleShowEntry}

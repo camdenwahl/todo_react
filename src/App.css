@@ -3,33 +3,33 @@ body {
 
 }
 
-#nav-bar {
-    display: flex;
+#menu-open {
+    margin: 1%;
+}
 
-    background-color: #5E503F;
-    background-color: #14453D;
+#nav-bar {
+    display:flex;
+    background-color: #815E5B;
     align-items: center;
     justify-content: space-between;
     color: white;
-    position: fixed;
     width: 100%;
     z-index: 1;
-
 }
 
-#nav-bar h1 {
+#nav-bar h2 {
     margin-left: 5%;
     margin-right: 5%;
+
 }
 
 #side-bar #projectButton {
     border-radius: 0%;
     border: none;
     color: white;
-    background-color: #5E503F;
+    background-color: #815E5B;
     margin: 5%;
     width: 50%;
-    margin-top: 6rem;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -41,10 +41,9 @@ body {
 #projectButton:hover {
     transform: scale(1.05);
     transition: 0.3s;
-    background-color: #14453D;
+    background-color: #815E5B;
     margin: 5%;
     width: 100%;
-    margin-top: 6rem;
 }
 
 
@@ -54,23 +53,24 @@ body {
     align-items: center;
     width: 20%;
     height: 100vh;
-    background-color: #A9927D;
+    background-color: #8F6966;
     overflow: auto;
-    background-color: #3D7068;
-    overflow: auto;
+    color: white;
+    border: none;
 }
 
 .project-divs {
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: #A27E7C;
+    margin-bottom: 0.5%;
 }
 
 .project-divs:hover {
     transition: 0.3s;
-    background-color: #5E503F;
+    background-color: #997370;
     cursor: pointer;
-    background-color: #14453D;
 
 
 }
@@ -89,17 +89,15 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     height: 100vh;
-
     
 }
 
 #content-bar {
     width: 100%;
-    margin-top: 5rem;
     display: flex;
     flex-wrap: wrap;
-    background-color: #F2F4F3;
     overflow: hidden;
+    border: none;
 }
 
 #content-bar div {
@@ -108,7 +106,7 @@ body {
 }
 
 #content-bar .project-container {
-    border: 1px solid #14453D;
+    border: 1px solid #997370;
 
 }
 
@@ -116,7 +114,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #49111C;
+    background-color: #997370;
     color: white;
     overflow: auto;
 
@@ -154,21 +152,81 @@ body {
     margin: 3%;
 }
 
-.task-item button {
+.task-item button, .project-buttons {
     border: none;
     background-color: #C14953;
     color: white;
-    border-radius: 10px;
+    border-radius: 10px !important;
     padding: 0;
     cursor: pointer;
 }
 
-
-#content-bar div {
-    justify-content: center;
+#entryForm, #input-button-div {
     display: flex;
-    width: 100%;
-    border: 1px solid #14453D;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    margin: 1%;
 }
 
+#input-button-div input {
+    width: 100%;
+    margin: 8%;
+}
 
+#entryForm label {
+    margin: 1%;
+}
+
+#entryForm button, #input-button-div button, #addTaskButton {
+    width: 5rem;
+    border: none;
+    background-color: #997370;
+    color: white;
+    border-radius: 10px;
+}
+
+#entryForm button:hover, #input-button-div button:hover, #addTaskButton:hover {
+    width: 6rem;
+    border: none;
+    background-color: #A27E7C;
+    color: white;
+    border-radius: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    #entryForm {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    #entryForm label {
+        float: left;
+    }
+
+    #entryForm input {
+        width: 100%;
+    }
+
+    #side-bar {
+        display: none;
+    }
+    .task-item {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    #menu-open {
+        display: block;
+        cursor: pointer;
+        margin: 1%;
+    }
+    
+    #menu-open:hover {
+        transform: scale(1.05);
+    }
+}

@@ -1,8 +1,8 @@
 import React from "react";
 
-function Contentbar({projectComponents, handleAddTask, handleShowEntry, showEntry, toDoList, handleToDoDelete}) {
+function Contentbar({projectComponents, handleAddTask, handleShowEntry, showEntry, toDoList, handleToDoDelete, sidebarVisibility}) {
     return (
-        <div id = "content-bar">
+        <div id = "content-bar" style={{ width: !sidebarVisibility ? '100vw' : '0%', display: !sidebarVisibility ? 'flex' : 'none' }}>
                 {projectComponents.map(project => {
                 if (project.selectedState) {
                     return (
@@ -10,7 +10,7 @@ function Contentbar({projectComponents, handleAddTask, handleShowEntry, showEntr
                         <div className = "project-container">
                             <h3>{project.name}</h3>
                             <div className = "task-container">
-                                <button onClick = {() => (handleShowEntry(project.uniqueKey))}>Add Task</button>
+                                <button onClick = {() => (handleShowEntry(project.uniqueKey))} id = "addTaskButton">Add Task</button>
                                 {project.showEntry ? 
                                 <form id = "entryForm" onSubmit = {(event) => handleAddTask(event, project.uniqueKey)}>
                                     <label htmlFor="">
