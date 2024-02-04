@@ -14,24 +14,15 @@ function App() {
   const [projectList, setProjectList] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [inputValue, setInputValue] = useState("");
-<<<<<<< HEAD
   const [showEntry, setShowEntry] = useState(false);
   const [toDoList, setToDoList] = useState([]);
-
-
-=======
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
 
   function handleShow() {
     setShowResults(!showResults);
   }
 
   function handleAddProject() {
-<<<<<<< HEAD
     const newArrayState =  [...projectList, {"name": inputValue, "uniqueKey": uuidv4(), "selectedState": false, "showEntry": false} ];
-=======
-    const newArrayState =  [...projectList, {"name": inputValue, "uniqueKey": uuidv4(), "selectedState": false} ];
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
     setProjectList(newArrayState);
     setInputValue("");
     setShowResults(false);
@@ -48,7 +39,6 @@ function App() {
         return project;
       }
     });
-<<<<<<< HEAD
     const cleanToDos = [...toDoList].filter(project => {
       if(project.folder !== event.target.value){
         return project;
@@ -67,28 +57,21 @@ function App() {
     setToDoList(cleanToDos);
   }
 
-=======
-    setProjectList(newArrayState);
-  }
 
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
   function handleActiveToggle(uniqueKey) {
     const newArrayState = [...projectList].map(project => {
       if (project.uniqueKey === uniqueKey) {
         return {...project, selectedState: !project.selectedState };
-<<<<<<< HEAD
       } else if (project.uniqueKey !== uniqueKey) {
         return {...project, selectedState: false};
-=======
+
       } else {
         return project;
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
       }
     })
+    console.log(newArrayState);
     setProjectList(newArrayState);
   }
-
-<<<<<<< HEAD
 
   function handleShowEntry(uniqueKey) {
     const newArrayState = [...projectList].map(project => {
@@ -118,10 +101,6 @@ function App() {
     }
   }
 
-
-
-=======
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
   return(
     <>
     <Navbar/>
@@ -135,26 +114,20 @@ function App() {
     inputValue={inputValue}
     handleDelete={handleDelete}
     handleActiveToggle={handleActiveToggle}
-<<<<<<< HEAD
     handleEnter={handleEnter}
-=======
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
     
     />
     <Contentbar 
     projectComponents= {projectList}
-<<<<<<< HEAD
     handleAddTask={handleAddTask}
     handleShowEntry={handleShowEntry}
     showEntry={showEntry}
     toDoList = {toDoList}
     handleToDoDelete = {handleToDoDelete}
-=======
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
     />
     </div>
     </>
   )
-}
+  }
 
-export default App
+export default App;

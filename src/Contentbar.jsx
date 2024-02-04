@@ -1,18 +1,12 @@
 import React from "react";
 
-<<<<<<< HEAD
 function Contentbar({projectComponents, handleAddTask, handleShowEntry, showEntry, toDoList, handleToDoDelete}) {
-
-=======
-function Contentbar({projectComponents}) {
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
     return (
         <div id = "content-bar">
                 {projectComponents.map(project => {
                 if (project.selectedState) {
                     return (
                     <div key = {project.uniqueKey}>
-<<<<<<< HEAD
                         <div className = "project-container">
                             <h3>{project.name}</h3>
                             <div className = "task-container">
@@ -43,9 +37,6 @@ function Contentbar({projectComponents}) {
                                 })}
                             </div>
                         </div>
-=======
-                        <h5>{project.name}</h5>
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
                     </div>)
                 }
             })}
@@ -53,5 +44,4 @@ function Contentbar({projectComponents}) {
         </div>
     )
 }
-
 export default Contentbar;

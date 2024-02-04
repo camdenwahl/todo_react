@@ -1,27 +1,20 @@
 body {
     margin: 0;
-<<<<<<< HEAD
 
-=======
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
 }
 
 #nav-bar {
     display: flex;
-<<<<<<< HEAD
+
     background-color: #5E503F;
-=======
     background-color: #14453D;
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
     align-items: center;
     justify-content: space-between;
     color: white;
     position: fixed;
     width: 100%;
-<<<<<<< HEAD
     z-index: 1;
-=======
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
+
 }
 
 #nav-bar h1 {
@@ -33,7 +26,6 @@ body {
     border-radius: 0%;
     border: none;
     color: white;
-<<<<<<< HEAD
     background-color: #5E503F;
     margin: 5%;
     width: 50%;
@@ -49,12 +41,10 @@ body {
 #projectButton:hover {
     transform: scale(1.05);
     transition: 0.3s;
-=======
     background-color: #14453D;
     margin: 5%;
     width: 100%;
     margin-top: 6rem;
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
 }
 
 
@@ -64,15 +54,10 @@ body {
     align-items: center;
     width: 20%;
     height: 100vh;
-<<<<<<< HEAD
     background-color: #A9927D;
     overflow: auto;
-
-
-=======
     background-color: #3D7068;
     overflow: auto;
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
 }
 
 .project-divs {
@@ -83,12 +68,10 @@ body {
 
 .project-divs:hover {
     transition: 0.3s;
-<<<<<<< HEAD
     background-color: #5E503F;
     cursor: pointer;
-=======
     background-color: #14453D;
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
+
 
 }
 
@@ -105,10 +88,8 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-<<<<<<< HEAD
     height: 100vh;
-=======
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
+
     
 }
 
@@ -117,7 +98,6 @@ body {
     margin-top: 5rem;
     display: flex;
     flex-wrap: wrap;
-<<<<<<< HEAD
     background-color: #F2F4F3;
     overflow: hidden;
 }
@@ -182,8 +162,7 @@ body {
     padding: 0;
     cursor: pointer;
 }
-=======
-}
+
 
 #content-bar div {
     justify-content: center;
@@ -192,4 +171,4 @@ body {
     border: 1px solid #14453D;
 }
 
->>>>>>> 5c7b64933b61bdbcc28ad32e7215ff4429f2dda5
+
