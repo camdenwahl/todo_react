@@ -6,7 +6,6 @@ import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import Contentbar from './Contentbar'
 import { v4 as uuidv4 } from 'uuid';
-import { useEffect } from 'react'
 
 
 
@@ -18,7 +17,6 @@ function App() {
   const [showEntry, setShowEntry] = useState(false);
   const [toDoList, setToDoList] = useState([]);
   const [sidebarVisibility, setSidebarVisibility] = useState(true);
-  const [sidebarWidth, setSidebarWidth] = useState(true);
 
   function handleShow() {
     setShowResults(!showResults);
@@ -72,6 +70,7 @@ function App() {
         return project;
       }
     })
+    console.log(newArrayState);
     setProjectList(newArrayState);
     handleDisplay();
   }
@@ -82,13 +81,7 @@ function App() {
         return {...project, showEntry: !project.showEntry };
       } else if (project.uniqueKey !== uniqueKey) {
         return {...project, showEntry: false};
-      }useEffect(() => {
-        window.addEventListener('resize', handleDisplay);
-      
-        return () => {
-          window.removeEventListener('resize', handleDisplay);
-        };
-      }, []);
+      }
     })
     setProjectList(newArrayState);
   }
@@ -110,20 +103,8 @@ function App() {
     }
   }
   function handleDisplay(){
-    if (window.innerWidth > 700) {
-      setSidebarWidth(!sidebarWidth)
-    }
     setSidebarVisibility(!sidebarVisibility);
-    console.log(sidebarWidth)
   }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleDisplay);
-  
-    return () => {
-      window.removeEventListener('resize', handleDisplay);
-    };
-  }, []);
 
   return(
     <>
@@ -131,8 +112,7 @@ function App() {
     handleDisplay = {handleDisplay}
     />
     <div id = "flex-content">
-    <Sidebar
-    sidebarWidth = {sidebarWidth} 
+    <Sidebar 
     sidebarVisibility = {sidebarVisibility}
     handleAddProjectProp = {handleAddProject}
     handleText = {handleInput} 
