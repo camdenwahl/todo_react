@@ -14,6 +14,7 @@ export const GlobalContext = createContext({
   inputValue: "",
   showEntry: false,
   toDoList: [],
+  sidebarWidth: "20%",
   sidebarVisibility: true,
   handleDisplay: () => {},
   handleShow: () => {},
@@ -36,6 +37,7 @@ function App() {
   const [showEntry, setShowEntry] = useState(false);
   const [toDoList, setToDoList] = useState([]);
   const [sidebarVisibility, setSidebarVisibility] = useState(window.innerWidth > 768);
+  const [sidebarWidth, setSidebarWidth] = useState("20%");
 
   function handleShow() {
     setShowResults(!showResults);
@@ -90,6 +92,7 @@ function App() {
       }
     })
     console.log(newArrayState);
+    handleDisplay();
     setProjectList(newArrayState);
   }
 
@@ -126,7 +129,9 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      console.log(sidebarVisibility);
+      const windowWidth = window.innerWidth;
+      const newWidth = windowWidth < 768 ? "100vw" : "20%";
+      setSidebarWidth(newWidth);
       setSidebarVisibility(window.innerWidth < 768);      
     };
 
@@ -139,7 +144,7 @@ function App() {
 
   return(
     <>
-    <GlobalContext.Provider value={{handleToDoDelete, handleShowEntry, handleAddTask, handleInput, handleShow, handleDelete, handleActiveToggle, handleEnter, handleAddProject, sidebarVisibility, projectList, showResults, inputValue, toDoList, handleDisplay}}>
+    <GlobalContext.Provider value={{sidebarWidth, handleToDoDelete, handleShowEntry, handleAddTask, handleInput, handleShow, handleDelete, handleActiveToggle, handleEnter, handleAddProject, sidebarVisibility, projectList, showResults, inputValue, toDoList, handleDisplay}}>
       <Navbar
       />
       <div id = "flex-content">

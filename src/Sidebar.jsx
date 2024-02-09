@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { GlobalContext } from "./App";
 
-function Sidebar({sidebarWidth}) {
-const {handleInput, handleEnter, handleActiveToggle, handleShow, handleDelete, handleAddProject, projectList, showResults, inputValue, sidebarVisibility} = useContext(GlobalContext);
+function Sidebar() {
+const {sidebarWidth, handleInput, handleEnter, handleActiveToggle, handleShow, handleDelete, handleAddProject, projectList, showResults, inputValue, sidebarVisibility} = useContext(GlobalContext);
 
     return(
         <div id = "side-bar" style={{
-            width: sidebarVisibility ? (sidebarWidth ? "20%" : "100vw") : "20vw",
-            display: sidebarVisibility ? "flex" : "flex",
+            width: sidebarVisibility ? sidebarWidth : "0", display: sidebarVisibility ? "flex" : "none",
           }}>
             <button onClick={handleShow} id = "projectButton">Add Project</button>
             {showResults ? <div id = "input-button-div"><input type="text"  value = {inputValue} onChange = {handleInput}  onKeyDown={handleEnter}/> <button onClick = {handleAddProject}>Submit</button></div> : null}
