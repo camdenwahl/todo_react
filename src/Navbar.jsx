@@ -1,9 +1,12 @@
 import React from "react";
+import { useContext } from "react";
+import { GlobalContext } from "./App";
 
 
 
 
-function Navbar({handleDisplay}) {
+function Navbar() {
+    const {handleDisplay} = useContext(GlobalContext);
     return(
         <div id = "nav-bar">
             <h2>To Do App</h2>

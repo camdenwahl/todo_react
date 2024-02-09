@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,17 +6,36 @@ import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import Contentbar from './Contentbar'
 import { v4 as uuidv4 } from 'uuid';
+import { createContext } from 'react'
 
-
+export const GlobalContext = createContext({
+  projectList: [],
+  showResults: false,
+  inputValue: "",
+  showEntry: false,
+  toDoList: [],
+  sidebarVisibility: true,
+  handleDisplay: () => {},
+  handleShow: () => {},
+  handleAddProject: () => {},
+  handleInput: () => {},
+  handleDelete: () => {},
+  handleToDoDelete: () => {},
+  handleActiveToggle: () => {},
+  handleShowEntry: () => {},
+  handleAddTask: () => {},
+  handleEnter: () => {}
+})
 
 
 function App() {
+
   const [projectList, setProjectList] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [showEntry, setShowEntry] = useState(false);
   const [toDoList, setToDoList] = useState([]);
-  const [sidebarVisibility, setSidebarVisibility] = useState(true);
+  const [sidebarVisibility, setSidebarVisibility] = useState(window.innerWidth > 768);
 
   function handleShow() {
     setShowResults(!showResults);
@@ -72,7 +91,6 @@ function App() {
     })
     console.log(newArrayState);
     setProjectList(newArrayState);
-    handleDisplay();
   }
 
   function handleShowEntry(uniqueKey) {
@@ -96,45 +114,42 @@ function App() {
     })
     console.log(toDoList);
   }
-
   function handleEnter(event){
     if (event.key === "Enter"){
       handleAddProject();
     }
   }
   function handleDisplay(){
+    console.log(sidebarVisibility);
     setSidebarVisibility(!sidebarVisibility);
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      console.log(sidebarVisibility);
+      setSidebarVisibility(window.innerWidth < 768);      
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return(
     <>
-    <Navbar
-    handleDisplay = {handleDisplay}
-    />
-    <div id = "flex-content">
-    <Sidebar 
-    sidebarVisibility = {sidebarVisibility}
-    handleAddProjectProp = {handleAddProject}
-    handleText = {handleInput} 
-    projectComponents = {projectList} 
-    showResults={showResults} 
-    handleShow={handleShow}
-    inputValue={inputValue}
-    handleDelete={handleDelete}
-    handleActiveToggle={handleActiveToggle}
-    handleEnter={handleEnter}
-    
-    />
-    <Contentbar 
-    sidebarVisibility = {sidebarVisibility}
-    projectComponents= {projectList}
-    handleAddTask={handleAddTask}
-    handleShowEntry={handleShowEntry}
-    showEntry={showEntry}
-    toDoList = {toDoList}
-    handleToDoDelete = {handleToDoDelete}
-    />
-    </div>
+    <GlobalContext.Provider value={{handleToDoDelete, handleShowEntry, handleAddTask, handleInput, handleShow, handleDelete, handleActiveToggle, handleEnter, handleAddProject, sidebarVisibility, projectList, showResults, inputValue, toDoList, handleDisplay}}>
+      <Navbar
+      />
+      <div id = "flex-content">
+      <Sidebar 
+      />
+      <Contentbar 
+      />
+      </div>
+    </GlobalContext.Provider>
+
     </>
   )
   }

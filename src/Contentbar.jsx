@@ -1,9 +1,12 @@
 import React from "react";
+import { useContext } from "react";
+import { GlobalContext } from "./App";
 
-function Contentbar({projectComponents, handleAddTask, handleShowEntry, showEntry, toDoList, handleToDoDelete, sidebarVisibility}) {
+function Contentbar() {
+    const {projectList, handleAddTask, handleShowEntry, showEntry, toDoList, handleToDoDelete, sidebarVisibility} = useContext(GlobalContext);
     return (
         <div id = "content-bar" style={{ width: !sidebarVisibility ? '100vw' : '0%', display: !sidebarVisibility ? 'flex' : 'none' }}>
-                {projectComponents.map(project => {
+                {projectList.map(project => {
                 if (project.selectedState) {
                     return (
                     <div key = {project.uniqueKey}>
